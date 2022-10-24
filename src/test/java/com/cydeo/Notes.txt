@@ -1,0 +1,155 @@
+DDT: DATA DRIVEN TESTING FRAMEWORK
+
+ - Data Driven Testing: Executing the same tests against different test data.
+
+ - Data Driven Testing Framework:
+  - It is the framework we are able to read data from an external file and use it in our source code.
+
+  - We can get data from:
+   - MS Excel
+   - MS Access
+   - Database
+   - Feature Files
+   - configuration.properties
+
+
+-------------------------------------------------------------
+
+- Keyword Driven Testing Framework:
+  - Creating testing structure based on some  keywords that are executable
+  - This requires a lot of time to invest in to even make it work, but also it is hard to maintain,and hard to scale since the object repositories and keyword repositories have to maintained  and expanded as the framework gets bigger
+
+
+-------------------------------------------------------------
+
+
+MVP: MINIMAL VIABLE PRODUCT
+
+- TDD: TEST DRIVEN DEVELOPMENT: (BUG FREE DEVELOPMENT)
+ - There is a repeating development cycle with TDD
+
+#1. Write tests before writing any source code.
+#2. Run the tests and it will fail
+#3. Write minimum amount of code to make the tests pass
+#4. Run the tests again.
+#5. Optionally Refactor the test scripts and REPEAT
+#6. Test will pass.
+
+
+- In TDD developers are writing @Test in preferred Programming Language
+- That's why it is not readable or understandable for non-tech team members of the team
+- That is why we will be usin BDD
+
+
+------------------------------------------------------------
+
+BDD: BEHAVIOR DRIVEN DEVELOPMENT
+
+- BDD has 2 layers:
+
+ #1. Business Layer: FEATURE FILES
+  - Feature files will be storing different features, scenarios, and reusable steps in GHERKIN language
+  - Business side is mostly for collabration with non-tech people
+
+ #2. Implemantation Layer: STEP DEFINITIONS
+  - technical people implement the "Step Definitions" to convert steps (from feture file) into concrete actions (using java-selenium code)
+
+
+-------------------------------------------------------------
+
+
+- Why are we NOT using TESTNG and using JUNIT?
+
+ #1. Because the community mostly using CUCUMBER with JUNIT
+  - more help from getting answers of your questions
+  - more opportunities
+  - more demand
+
+ #2. We don't need all of the annotations coming from TESTNG because cucumber is already giving us all power to do our testing like data-drivern testing....
+
+
+ - Is CUCUMBER a testing tool?
+  - No,it is not.
+  - Cucumber is just a BDD implementation tool
+  - Therefore, it does not come with any assertions or any programming language
+  - That is why we have to use the dependencies with "cucumber-java" and "cucmber-junit"
+    to be able to develop some programming logic and also be able to generate some test approach with assertions
+
+
+TESTNG Assertions: Assert.assertTrue(boolean,"Failure message")
+                   Assert.assertEquals(actual,expected,"Failure message")
+
+
+JUNIT Assertions: Assert.assertTrue("Failure message",boolean)
+                  Assert.assertEquals("Failure message",expected,actual)
+
+
+-------------------------------------------------------------
+
+- GIVEN, WHEN, AND, THEN, BUT
+ --> All of these keywords we use in feature files are only for communication purpose
+ --> They don't change the functionality of the step_definitions
+
+ - Our code will be executed in the order we create in the feature files
+ - Each scenario will executed by top to bottom, and each step will be creating it step_definition method from its own package and class
+
+- GIVEN: is used fro pre-conditions
+
+Ex: Given user is already on login page
+    Given user already on home page
+    Given user already login to the page
+
+
+
+WHEN: is used fro when some actions happen
+
+ Ex: When user enters username
+     When user clicks submit button
+     When users search for something
+
+
+AND: is used for when you many repeating lines of any keyword
+
+BUT: is similar for "AND" but for when we are comparing or some negative scenario happening
+
+THEN: is used for when the verification is happening
+
+      - Then user should see title of the page
+      - Then user should be on dasboard page
+
+
+--------------------------------------------------------
+
+TAGS: Tags are used to group different scenarios together
+
+- We can use tags to include or exclude some scenarios
+
+- If we put the @tag on top of the .feature file, it will effect whole feature file/all scenarios
+- If we put it on the top of a Scenario, it will only effect that scenario
+- You can have as many as tags you want for feature file or scenario
+
+
+- How do we include or exclude different tags together?
+
+- How do we use different tags together?
+
+
+or:
+  - "or" keyword can be used fro checking condition
+  - when we use "or" we are being less specific, less selective
+  - if either one of the tags are matching, the scenario or feature will be executed
+  - "or" is like "||" in Java
+  - if either one sides are matching, it will execute the scenario or feature file
+
+
+ and:
+  - "and" keyword can be used fro checking condition as well
+  - when we use "and" keyword we are being more specific
+  - "and" is like "&&" in Java
+  - the tags  on both side has to be matching for a scenario or feature
+
+
+ and not:
+  - "and not" keyword can be used excluding conditions
+
+  Ex: @Regression and not @student
