@@ -1,0 +1,28 @@
+1. Create feature file in features package.
+   --- .feature extension
+   --- Feature: name of the functionality, US/AC
+   --- Scenario: TC
+       and here you describe your TC using the keywords: Given , When, And, But, Then
+   --- tag Scenario with @wip annotation (work in progress) and call this tag in runner (CukesRunner.java).
+   --- in CukesRunner.java assign dryRun to true.
+
+2. Run CukesRunner. ---> copy the snippets from console
+
+3. in package step_defenitions create the StepDefinitions class and paste the snippets in it
+
+4. Create the page class (in pages package) to implement POM
+   --- create constructor and put PageFactory.initElements(Driver.getDriver(), this); inside of the constructor body.
+   --- declare all necessary web elements using the @FindBy annotation to locate them:
+
+   @FindBy (locator = "value")
+    public WebElement element;
+
+5. In StepDefinitions fill in your snippets with Java-Selenium code.
+
+6. change dryRun to true and update the tag with the annotations assigned to the tests you want to run.
+
+7. Run CukesRunner and - vou a la! - the test result is ready.
+
+
+
+
