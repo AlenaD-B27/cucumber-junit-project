@@ -313,3 +313,36 @@ or:
     - comes from cucumber-java dependency
     - this will change the behavior of the method we use it.
     - this method will be running AFTER each and every STEP in our project (unless we specify with @TAGS)
+
+
+    -----------------------------------------------------------
+
+    - Step by Step testing flow in BDD framework?
+
+    #1. Creating feature file related to your testcase and with using Gherkin language keywords you are wting your test steps
+
+    #2. We will get unimplemented steps (snippets) from CukesRunner class with making dryRun=true
+
+    #3. We will create StepDefinitions class under step_definition package and we will implemenet snippets in this class
+
+    #4. Before we start to write SELENIUM + JAVA + JUNIT codes we are going to create Page class to store elements which is related to testcases
+
+    #5. We will start to write SELENIUM + JAVA + JUNIT codes in our step methods in StepDefinitions class
+
+    #6. To run our StepDefinitions class we need to make sure from CukesRunner class
+       - dryRun = false
+       - tags = "@testRelatedTag"
+
+    ** @wip--> working in progress
+       - this tag is very useful for determining your current scenario(test case) that you are working now.
+
+
+    -------------------------------------------
+
+    PARAMETERIZATION: CUCUMBER EXPRESSIONS
+
+        - Cucumber Expressions allows us to pass arguments from feature files
+        - We can pass String, int, float, word
+        - We can even create our own object type, and pass it through the feature files
+
+        - We are allowed to pass multiple different types of arguments including some java, and non-java type

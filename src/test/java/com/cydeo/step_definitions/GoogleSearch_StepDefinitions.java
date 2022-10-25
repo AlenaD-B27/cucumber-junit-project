@@ -2,6 +2,7 @@ package com.cydeo.step_definitions;
 
 import com.cydeo.pages.GoogleSearchPage;
 import com.cydeo.utilities.BrowserUtils;
+import com.cydeo.utilities.ConfigReader;
 import com.cydeo.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -22,11 +23,29 @@ public class GoogleSearch_StepDefinitions {
         googleSearchPage.searchBox.sendKeys("apple" + Keys.ENTER);
 
     }
-    @Then("user sees apple – Google Search is in the google title")
+    @Then("user sees apple - Google Search is in the google title")
     public void user_sees_apple_google_search_is_in_the_google_title() {
         String expectedTitle = "apple - Google Search";
         String actualTitle = Driver.getDriver().getTitle();
         Assert.assertEquals("Title verification is failed",expectedTitle, actualTitle);
+
+    }
+
+
+    @When("user types {string} in the google search box and clicks enter")
+    public void user_types_in_the_google_search_box_and_clicks_enter(String searchkeyword) {
+
+        googleSearchPage.searchBox.sendKeys(searchkeyword + Keys.ENTER);
+
+    }
+    @Then("user sees {string} is in the google title")
+    public void user_sees_is_in_the_google_title(String expectedTitle) {
+
+
+        String actualTitle = Driver.getDriver().getTitle();
+
+        Assert.assertEquals("Title verification is failed",expectedTitle, actualTitle);
+
 
     }
 }
