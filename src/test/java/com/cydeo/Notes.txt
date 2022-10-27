@@ -346,3 +346,118 @@ or:
         - We can even create our own object type, and pass it through the feature files
 
         - We are allowed to pass multiple different types of arguments including some java, and non-java type
+
+        ------------------------------------------------------------------------------
+
+        - Where do we control or trigger our framework?
+         - Runner class
+         - CukesRunner class
+         - TestRunner
+
+         - @RunWith(Cucumber.class) --> it is coming for Junit
+           - Using this annotation we make our class runnable and we also give information that is going to Cucumber class
+
+           - @CucumberOptions() --> We can pass options to control our framework
+
+
+        - What aspects of the project we control from Runner class?
+
+         - plugin : determines what type of report we want to generate with our project, and also where we want to store
+
+         - features : we provide the path of the "features" directory and let our project know where we find all of the feature files
+
+         - glue : we provide the path of the "step_definitions" package
+
+         - dryRun: dryRun determines if we want to execute step_definitions or not
+           - if dryRun = true --> dryRun is turned on, and step_definitions are turned off (will not run) . Just give unimplemented steps
+           - if dryRun = false --> dryRun is turned off, and step_definitions are turned on (will run) . Just run step_definitions
+
+           - This is mostly used for when implementing new steps and step_definitions, and we do not want to run the code and open browser etc, just to get snippets
+           - we turned off the step-definitions and just generate snippets
+
+        - tags :
+          - What are tags and why we use them?
+
+           - Tags allows us to create different scenario suites or groups to run
+           - we can include, or exclude different feature files or scenarios using tags
+           - or: if a scenario or feature has either "@a or @b", it will be executed
+           - and: the scenario/feature MUST have both "@a and @b" to be able to get executed
+           - and not : if we want to exclude some certain @tag, group of feature files or scenarios,
+             we can put the tag on top of them, and use with "@smoke and not @anyTagYouDontWant"
+
+           - @wip : work in progress --> you can use this tag for your current working scenario daily
+
+
+         -------------------------------------------------------------------------------
+
+
+         - BACKGROUND:
+
+           - Used to create pre-conditions for Scenarios in same feature file.
+           - Background: keyword allows us to add repeating steps 1 time, and they will be working with all of the scenarios in the SAME FEATURE FILE
+           - Background can only effect the scenarios that are in same feature file
+           - This is similar to @BeforeMethod from TestNG
+
+
+
+         - HOOKS:
+           - Hooks are used to create pre- and post- conditions for scenarios and steps
+           - When we are using Hooks, we need to be extra careful because all the logic we create will be implements for all of the scenarios and/or steps in our project
+
+           - We can specify using @tags if we want the pre-/post- conditions to be applying to only certain steps or scenarios
+
+        --------------------------------------------------
+
+        - PARAMETERIZATON:
+         - This allows us to pass arguments to our steps from feature files
+         - it allow usto pass different test data to same test; it is data driven testing
+
+        ---------------------------------------------------
+
+
+        HTML REPORTING:
+
+        - How do you generate reports in framework?
+
+         - plugin : will allows us to decide the type of the report we want to generate
+
+         - plugin = "html:target/cucumber-report.html"
+
+           - "html:" --> the type of the report
+           - "target/" --> where we want to save our report
+           - "cucumber-reports.html" --> the name of the report file that will be auto generate by cucumber
+
+         - How to open report from framework:
+          target -> cucumber-reports.html -> open in -> Browser -> Chrome
+
+
+        ----------------------------------------------------------
+
+        - TAKING SCREENSHOT
+
+        - To take a screenshot, we need to use a method that is coming from TakesScreenshot interface
+
+        - Since driver instance type is WebDriver interface, we have to downcast our driver instance to TakesScrenshot interface to be able to use ".getScreenshotAs" method
+
+
+         if(scenario.isFailed()){
+
+        byte [] screenshot =((TakesScreenshot)Driver.getDriver()).getScreenshotAsOutputType.BYTES);
+                    scenario.attach(screenshot,"image/png",scenario.getName());
+
+        }
+
+        - byte [] screenshot --> We store byte by byte image in byte type of array
+          - we choose BYTES type which will take screnshot pixel by pixel in bytes size
+
+        - We are usin Scenario class to use attach method to attach screenshot in our scenario
+
+        - Since we write those codes in After annotation in Hooks class. It will take screen shot after each scenario
+
+
+        - How do you take screenshot in framework?
+         - I use Scenario class to get certain information from current scenario such as name, and condition
+
+         - I downcast my driver instance type to TakesScreenshot interface and use ".getScreenshotAs" method to store screenshots as array of bytes
+
+         - And attach my screenshot into report using Scenario class object and attach method
