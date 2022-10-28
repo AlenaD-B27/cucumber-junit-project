@@ -461,3 +461,30 @@ or:
          - I downcast my driver instance type to TakesScreenshot interface and use ".getScreenshotAs" method to store screenshots as array of bytes
 
          - And attach my screenshot into report using Scenario class object and attach method
+
+         --------------------------------------------------------------------------------
+
+         - DATA TABLES:
+          - Data tables are handy for passing a list/map of values to step definitions
+
+         - Why do we use data tables?
+          - Parameterization allows us to pass multiple arg in one 1 step
+          - But we can not pass collection type  under 1 step using parameterization
+          - Data tables allows us to pass colection types under 1 step
+          - We can pass List, Map, List of Maps, Maps of Maps etc.
+
+
+         --------------------------------------------------------------------------------
+
+         - SCENARIO OUTLINES:
+
+          - Scenario Outline keyword can be used to run the same Scenario multiple times, with different combinations of values
+
+          - Instead of using "Scenario" keyword, we use "Scenario Outline"
+          - After this step, it will not compile unless we provide a table of "Examples" keyword
+          - The arguments we provide in our step become "header" for the "Examples" table
+            and we provide rest of data under headers
+          - We can pass more than one "Examples" under one "Scenario Outline"
+
+          - Since we run 1 Test/Scenario with using multiple test data, we call it
+            DATA DRIVEN TESTING
