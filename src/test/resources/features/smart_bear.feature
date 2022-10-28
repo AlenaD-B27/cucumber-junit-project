@@ -1,6 +1,6 @@
 Feature: SmartBear order process
 
-  @wip
+
   Scenario: As a user, on Order Page I want to be able to see John Wick in the list after I fill out the form with valid data
 
   When User is logged into SmartBear Tester account on Order page
