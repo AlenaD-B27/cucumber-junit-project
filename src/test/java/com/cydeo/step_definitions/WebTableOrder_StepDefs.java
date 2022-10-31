@@ -33,6 +33,8 @@ public class WebTableOrder_StepDefs {
     }
     @When("user enters quantity {int}")
     public void user_enters_quantity(Integer quantity) {
+
+        orderPage.quantityBox.clear();
         orderPage.quantityBox.sendKeys(String.valueOf(quantity));
     }
     @When("user enters customer name {string}")
@@ -57,11 +59,16 @@ public class WebTableOrder_StepDefs {
     }
     @When("user selects credit card type {string}")
     public void user_selects_credit_card_type(String cardType) {
-        for(WebElement eachType : orderPage.creditCardRadios){
+/*
+       for(WebElement eachType : orderPage.creditCardRadios){
             if(eachType.getAttribute("value").equalsIgnoreCase(cardType)){
                 eachType.click();
             }
-        }
+          }
+ */
+
+        BrowserUtils.clickRadioButton(orderPage.creditCardRadios, cardType);
+
     }
     @When("user enters credit card number {string}")
     public void user_enters_credit_card_number(String cardNumber) {

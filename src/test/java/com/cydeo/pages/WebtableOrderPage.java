@@ -8,7 +8,7 @@ import java.util.List;
 
 public class WebtableOrderPage extends WebtableBasePage{
 
-    @FindBy(tagName = "select")
+    @FindBy(name = "product")
     public WebElement productDropdown;
 
     @FindBy(css = "input[name='quantity']")
@@ -29,7 +29,7 @@ public class WebtableOrderPage extends WebtableBasePage{
     @FindBy(css = "input[name='zip']")
     public WebElement zipBox;
 
-    @FindBy(css = "input[type='radio']")
+    @FindBy(css = "input[name='card']")     //there might be more than one radio button in the same page, so they can have all the same attribute like type=radio, so type is not recommended as locator (bad habit)
     public List<WebElement> creditCardRadios;
 
     @FindBy(css = "input[name='cardNo']")
