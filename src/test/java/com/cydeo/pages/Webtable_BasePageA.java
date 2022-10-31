@@ -1,5 +1,6 @@
 package com.cydeo.pages;
 
+import com.cydeo.utilities.Driver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,8 +22,8 @@ public class Webtable_BasePageA {
         @FindBy(xpath = "//button[@class=\"button __logout\"]")
         public WebElement logoutButton;
 
-        public Webtable_BasePageA(WebDriver driver) {
-            PageFactory.initElements(driver, this);
+        public Webtable_BasePageA() {
+            PageFactory.initElements(Driver.getDriver(), this);
         }
 
 
