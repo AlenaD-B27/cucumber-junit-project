@@ -1,4 +1,4 @@
-
+@etsy
 Feature: Etsy Titles Verification
 
   Scenario: Home Page Title Verification

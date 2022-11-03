@@ -6,6 +6,8 @@ import com.cydeo.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Etsy_StepDefinitions {
 
@@ -44,7 +46,7 @@ public class Etsy_StepDefinitions {
 
     @Then("user types {string} in the search box")
     public void user_types_in_the_search_box(String searchWord) {
-        etsyHomePage.searchBtn.sendKeys(searchWord);
+        etsyHomePage.searchBox.sendKeys(searchWord);
     }
     @Then("user sees {string} is in the title")
     public void user_sees_is_in_the_title(String titleContains) {
